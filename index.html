@@ -1,61 +1,1089 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-<script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-<title> Formulario Web Visita Turistica</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visita Turística | Volcán Cotopaxi</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Iconos de Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* COLORES PRINCIPALES */
+        :root {
+            --verde: #174c3c;
+            --verde-claro: #2f7959;
+            --crema: #f5f5ef;
+            --dorado: #d6b46a;
+        }
+
+        /* ESTILOS GENERALES */
+        body {
+            font-family: 'sans-serif', Arial, Montserrat;
+            background-color: var(--crema);
+            color: #29352f;
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+        .navbar {
+            background-color: var(--verde);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white !important;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand i {
+            color: var(--dorado);
+        }
+
+        .nav-link {
+            color: #ffffffd9 !important;
+            margin-left: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--dorado) !important;
+        }
+
+        /* PORTADA PRINCIPAL */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(10, 35, 27, 0.48),
+                    rgba(10, 35, 27, 0.72)
+                ),
+                url('https://www.goecuadortravel.com/archivos/destinos/cotopaxi-1200x600-1_Mediano.jpg');
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            padding: 35px 5%;
+        }
+
+        .marca-ecuador {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .marca-ecuador img {
+            width: 180px;
+            height: auto;
+            object-fit: cover; 
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 576px) {
+            .marca-ecuador img {
+                width: 140px;
+            }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 3px 8px #00000070;
+        }
+
+        .hero h1 span {
+            color: var(--dorado);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .btn-explorar {
+            background-color: var(--dorado);
+            color: #1d3027;
+            padding: 13px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: 2px solid var(--dorado);
+            transition: 0.3s;
+        }
+
+        .btn-explorar:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* INTRODUCCIÓN */
+        .intro {
+            padding: 70px 0 30px;
+            text-align: center;
+        }
+
+        .subtitulo {
+            color: var(--verde-claro);
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .intro h2,
+        .formulario-titulo h2 {
+            color: var(--verde);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            margin: 12px 0;
+        }
+
+        .intro p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #69736c;
+            line-height: 1.8;
+        }
+
+        /* TARJETAS INFORMATIVAS */
+        .info-card {
+            height: 100%;
+            background: white;
+            padding: 28px 20px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 22px #173b2c0c;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px #173b2c16;
+        }
+
+        .info-icon {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            border-radius: 16px;
+            background: #e7f0e8;
+            color: var(--verde-claro);
+            font-size: 1.7rem;
+        }
+
+        .info-card h5 {
+            font-weight: 750;
+            color: var(--verde);
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #727b74;
+        }
+
+        /* SECCIÓN DEL FORMULARIO */
+        .formulario-seccion {
+            padding: 65px 0 90px;
+        }
+
+        .formulario-titulo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .formulario-titulo p {
+            color: #6c756f;
+        }
+
+        .formulario-card {
+            max-width: 950px;
+            margin: auto;
+            background: white;
+            padding: clamp(22px, 5vw, 50px);
+            border-radius: 24px;
+            box-shadow: 0 15px 50px #173b2c12;
+            border: 1px solid #e8ebe5;
+        }
+
+        .form-bloque {
+            margin-bottom: 35px;
+        }
+
+        .form-bloque-titulo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--verde);
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-bottom: 1px solid #e7ebe5;
+            padding-bottom: 15px;
+            margin-bottom: 22px;
+        }
+
+        .numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            background: var(--verde);
+            color: white;
+            border-radius: 11px;
+            font-size: 0.95rem;
+        }
+
+        .form-label {
+            font-weight: 650;
+            color: #394a40;
+            margin-bottom: 9px;
+        }
+
+        .form-control,
+        .form-select {
+            padding: 13px 15px;
+            border: 1px solid #dce3dc;
+            border-radius: 11px;
+            background-color: #fbfcfa;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--verde-claro);
+            box-shadow: 0 0 0 0.2rem #2f79591c;
+            background-color: white;
+        }
+
+        /* OPCIONES DE RADIO Y CHECKBOX */
+        .form-check {
+            padding: 13px 15px 13px 40px;
+            border: 1px solid #e4e9e3;
+            border-radius: 11px;
+            background: #fbfcfa;
+            transition: 0.2s;
+        }
+
+        .form-check:hover {
+            border-color: var(--verde-claro);
+            background: #f1f7f1;
+        }
+
+        .form-check-input {
+            cursor: pointer;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--verde-claro);
+            border-color: var(--verde-claro);
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        /* MENSAJE ECOLÓGICO */
+        .eco-box {
+            background: #edf5ed;
+            border-left: 5px solid var(--verde-claro);
+            border-radius: 12px;
+            padding: 23px;
+        }
+
+        .eco-box h5 {
+            color: var(--verde);
+            font-weight: 800;
+        }
+
+        .eco-box p {
+            color: #56665b;
+            margin-bottom: 15px;
+        }
+
+        .btn-eco {
+            background: var(--verde);
+            color: white;
+            border-radius: 25px;
+            padding: 10px 22px;
+            border: 0;
+            transition: 0.3s;
+        }
+
+        .btn-eco:hover {
+            background: var(--verde-claro);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* BOTONES DEL FORMULARIO */
+        .btn-enviar {
+            background: var(--verde);
+            color: white;
+            border: 2px solid var(--verde);
+            border-radius: 30px;
+            padding: 14px 35px;
+            font-weight: 750;
+            transition: 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background: var(--verde-claro);
+            color: white;
+            border-color: var(--verde-claro);
+            transform: translateY(-2px);
+        }
+
+        .btn-limpiar {
+            background: white;
+            color: var(--verde);
+            border: 1px solid #cbd5cc;
+            border-radius: 30px;
+            padding: 14px 25px;
+            font-weight: 650;
+        }
+
+        .btn-limpiar:hover {
+            background: #edf3ed;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background: #12392e;
+            color: white;
+            padding: 35px 0;
+            text-align: center;
+        }
+
+        footer .footer-icon {
+            color: var(--dorado);
+            font-size: 1.5rem;
+        }
+
+        footer p {
+            margin: 8px 0 0;
+            color: #d1ddd5;
+        }
+
+        /* ANIMACIÓN DE ENTRADA */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* DISEÑO PARA CELULARES */
+        @media (max-width: 576px) {
+            .hero {
+                min-height: 490px;
+                padding: 65px 18px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .formulario-card {
+                border-radius: 16px;
+            }
+
+            .form-bloque-titulo {
+                font-size: 1.03rem;
+            }
+
+            .botones-finales .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <center>
-    <h2>Formulario para Visitas Turisticas al</h1>
-    <h1>Volcan Cotopaxi</h1>
-    </center>
-<img src="https://www.goecuadortravel.com/archivos/destinos/cotopaxi-1200x600-1_Mediano.jpg" alt="volcancotopaxialternatetext" width="950">
 
-<p><h2>Complete las siguientes preguntas para su visita</h2></p>
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
 
-<form>
+            <a class="navbar-brand" href="#inicio">
+                <i class="bi bi-mountains"></i>
+                COTOPAXI TOUR
+            </a>
 
-    <label><h3>1. Cual es su nombre ?</h3></label>
-    <input type="text" name="nombrecliente">
-    <label><h3>2. Cuantas personas lo acompanian ?</h3></label>
-    <input type="number" name="numeroacomp" min="0">
-    <label><h3>3. En que fecha realizara su visita ?</h3></label>
-    <input type="date" name="fechavisita">
-    <label><h3>4. Es su primera visita al Volcan Cotopaxi ?</h3></label>
-    <input type="radio" id="Si" name="visito" value="Si">
-    <label for="Si">Si</label><br>
-    <input type="radio" id="No" name="visito" value="No">
-    <label for="No">No</label><br>
-    <label><h3>5. Que actividades desea realizar ?</h3></label>
-    <input type="checkbox" id="actividad1" name="actividad1" value="Senderismo">
-    <label for="actividad1">Senderismo</label><br>
-    <input type="checkbox" id="actividad2" name="actividad2" value="Fotografia">
-    <label for="actividad2">Fotografia</label><br>
-    <input type="checkbox" id="actividad3" name="actividad3" value="Ciclismo">
-    <label for="actividad3">Ciclismo</label><br>
-    <input type="checkbox" id="actividad4" name="actividad4" value="Observacion">
-    <label for="actividad4">Observacion de la Naturaleza</label><br>
-    <label><h3>6. Cual es su lugar de precedencia ?</h3></label>
-    <select id="Pais" name="Pais">
-        <option value="Quito">Quito</option>
-        <option value="Latacunga">Latacunga</option>
-        <option value="Otra ciudad del Ecuador">Otra ciudad del Ecuador</option>
-        <option value="Extranjero">Otro Pais</option>
-    </select>
-    <br>
-    <label for="email"><h3>7. Escriba su email de contacto:</h3></label>
-    <input type="email" id="email" name="email">
-    <label for="phone"><h3>8. Escriba su telefono de contacto:</h3></label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
-    <label><h3>9. Mensaje de consientizacion:</h3></label>
-    <input type="button" oneclick="alert('Cuida el medio ambiente')" value="Consientizacion">
-    <label><h3>10. Escriba sus recomendaciones para mejorar la atencion</h3></label>
-    <textarea name="Recomendaciones" rows="10" cols="50">
-    </textarea><br>
-    <input type="submit" value="Enviar">
-</form>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu"
+                    aria-controls="menu"
+                    aria-expanded="false"
+                    aria-label="Abrir menú">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencia">Experiencia</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formulario">Formulario</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PORTADA PRINCIPAL -->
+    <header class="hero" id="inicio">
+        <div class="hero-content">
+
+            <!-- Logotipo del Ecuador -->
+            <div class="marca-ecuador">
+                <img 
+                    src="https://imagenes.primicias.ec/files/og_thumbnail/uploads/2024/05/29/6657257458d81.jpeg"
+                    alt="Marca País"
+                >
+            </div>    
+            <span class="hero-tag">
+                <i class="bi bi-compass"></i>
+                Ecuador · Ama la · Vida
+            </span>
+
+            <h1>     
+                Descubre el <span>Volcán Cotopaxi</span>
+            </h1>
+
+            <p>
+                Vive una experiencia inolvidable entre montañas,
+                paisajes andinos y naturaleza. ¡Tu próxima aventura
+                comienza aquí!
+            </p>
+
+            <a href="#formulario" class="btn btn-explorar">
+                Planifica tu visita
+                <i class="bi bi-arrow-down-circle ms-2"></i>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- INTRODUCCIÓN -->
+    <section class="intro" id="experiencia">
+        <div class="container">
+
+            <span class="subtitulo">
+                Una aventura extraordinaria
+            </span>
+
+            <h2>Conecta con la naturaleza</h2>
+
+            <p>
+                El volcán Cotopaxi es uno de los paisajes más emblemáticos
+                del Ecuador. Cuéntanos cómo quieres vivir tu aventura
+                y ayúdanos a conocer tus preferencias para la visita.
+            </p>
+
+            <div class="row g-4 mt-4 text-start">
+
+                <!-- TARJETA 1 -->
+                <div class="col-md-4">
+                    <div class="info-card">
+
+                        <div class="info-icon">
+                            <i class="bi bi-signpost-split"></i>
+                        </div>
+
+                        <h5>Explora</h5>
+
+                        <p>
+                            Descubre senderos y paisajes únicos
+                            de los Andes ecuatorianos.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- TARJETA 2 -->
+                <div class="col-md-4">
+                    <div class="info-card">
+
+                        <div class="info-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+
+                        <h5>Captura momentos</h5>
+
+                        <p>
+                            Disfruta de escenarios naturales
+                            ideales para la fotografía.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- TARJETA 3 -->
+                <div class="col-md-4">
+                    <div class="info-card">
+
+                        <div class="info-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+
+                        <h5>Cuida el entorno</h5>
+
+                        <p>
+                            Protege la flora, la fauna y la
+                            belleza de este lugar especial.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE VISITA -->
+    <section class="formulario-seccion" id="formulario">
+        <div class="container">
+
+            <div class="formulario-titulo">
+
+                <span class="subtitulo">
+                    Prepara tu aventura
+                </span>
+
+                <h2>Formulario de visita turística</h2>
+
+                <p>
+                    Completa tus datos y cuéntanos qué te gustaría hacer.
+                </p>
+
+            </div>
+
+            <div class="formulario-card">
+
+                <form id="formVisita">
+
+                    <!-- BLOQUE 1: INFORMACIÓN PERSONAL -->
+                    <div class="form-bloque">
+
+                        <h3 class="form-bloque-titulo">
+                            <span class="numero">01</span>
+                            Información personal
+                        </h3>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label for="nombrecliente"
+                                       class="form-label">
+                                    <i class="bi bi-person me-1"></i>
+                                    ¿Cuál es su nombre?
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       id="nombrecliente"
+                                       name="nombrecliente"
+                                       placeholder="Ingrese su nombre completo"
+                                       autocomplete="name"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="numeroacomp"
+                                       class="form-label">
+                                    <i class="bi bi-people me-1"></i>
+                                    ¿Cuántas personas lo acompañan?
+                                </label>
+
+                                <input type="number"
+                                       class="form-control"
+                                       id="numeroacomp"
+                                       name="numeroacomp"
+                                       min="0"
+                                       max="100"
+                                       placeholder="Ej. 3"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="fechavisita"
+                                       class="form-label">
+                                    <i class="bi bi-calendar-event me-1"></i>
+                                    ¿En qué fecha realizará su visita?
+                                </label>
+
+                                <input type="date"
+                                       class="form-control"
+                                       id="fechavisita"
+                                       name="fechavisita"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="Pais" class="form-label">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    ¿Cuál es su lugar de procedencia?
+                                </label>
+
+                                <select class="form-select"
+                                        id="Pais"
+                                        name="Pais"
+                                        required>
+
+                                    <option value="" selected disabled>
+                                        Seleccione su procedencia
+                                    </option>
+
+                                    <option value="Quito">Quito</option>
+
+                                    <option value="Latacunga">
+                                        Latacunga
+                                    </option>
+
+                                    <option value="Otra ciudad del Ecuador">
+                                        Otra ciudad del Ecuador
+                                    </option>
+
+                                    <option value="Extranjero">
+                                        Otro país
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: EXPERIENCIA TURÍSTICA -->
+                    <div class="form-bloque">
+
+                        <h3 class="form-bloque-titulo">
+                            <span class="numero">02</span>
+                            Su experiencia turística
+                        </h3>
+
+                        <div class="mb-4">
+
+                            <label class="form-label d-block">
+                                ¿Es su primera visita al volcán Cotopaxi?
+                            </label>
+
+                            <div class="row g-3">
+
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               id="visitoSi"
+                                               name="visito"
+                                               value="Si"
+                                               required>
+
+                                        <label class="form-check-label"
+                                               for="visitoSi">
+                                            Sí, es mi primera visita
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               id="visitoNo"
+                                               name="visito"
+                                               value="No">
+
+                                        <label class="form-check-label"
+                                               for="visitoNo">
+                                            No, ya he visitado el volcán
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <label class="form-label d-block">
+                                ¿Qué actividades desea realizar?
+                            </label>
+
+                            <p class="text-secondary small">
+                                Puede seleccionar varias opciones.
+                            </p>
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="actividad1"
+                                               name="actividades"
+                                               value="Senderismo">
+
+                                        <label class="form-check-label"
+                                               for="actividad1">
+                                            <i class="bi bi-person-walking me-1"></i>
+                                            Senderismo
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="actividad2"
+                                               name="actividades"
+                                               value="Fotografia">
+
+                                        <label class="form-check-label"
+                                               for="actividad2">
+                                            <i class="bi bi-camera me-1"></i>
+                                            Fotografía
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="actividad3"
+                                               name="actividades"
+                                               value="Ciclismo">
+
+                                        <label class="form-check-label"
+                                               for="actividad3">
+                                            <i class="bi bi-bicycle me-1"></i>
+                                            Ciclismo
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="actividad4"
+                                               name="actividades"
+                                               value="Observacion">
+
+                                        <label class="form-check-label"
+                                               for="actividad4">
+                                            <i class="bi bi-binoculars me-1"></i>
+                                            Observación de la naturaleza
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: CONTACTO -->
+                    <div class="form-bloque">
+
+                        <h3 class="form-bloque-titulo">
+                            <span class="numero">03</span>
+                            Datos de contacto
+                        </h3>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope me-1"></i>
+                                    Correo electrónico
+                                </label>
+
+                                <input type="email"
+                                       class="form-control"
+                                       id="email"
+                                       name="email"
+                                       placeholder="ejemplo@correo.com"
+                                       autocomplete="email"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="phone" class="form-label">
+                                    <i class="bi bi-telephone me-1"></i>
+                                    Teléfono de contacto
+                                </label>
+
+                                <input type="tel"
+                                       class="form-control"
+                                       id="phone"
+                                       name="phone"
+                                       pattern="[0-9]{10}"
+                                       maxlength="10"
+                                       inputmode="numeric"
+                                       placeholder="Ej. 0991234567"
+                                       title="Ingrese 10 dígitos sin espacios"
+                                       autocomplete="tel"
+                                       required>
+
+                                <div class="form-text">
+                                    Ingrese 10 dígitos sin espacios ni guiones.
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 4: CONCIENTIZACIÓN -->
+                    <div class="form-bloque">
+
+                        <h3 class="form-bloque-titulo">
+                            <span class="numero">04</span>
+                            Compromiso con la naturaleza
+                        </h3>
+
+                        <div class="eco-box">
+
+                            <h5>
+                                <i class="bi bi-heart-fill me-2"></i>
+                                ¡Protejamos el Cotopaxi!
+                            </h5>
+
+                            <p>
+                                La naturaleza es nuestro mayor tesoro.
+                                No dejes basura, respeta la fauna y la flora,
+                                permanece en las rutas autorizadas y sigue
+                                las indicaciones de los guardaparques.
+                            </p>
+
+                            <button type="button"
+                                    class="btn btn-eco"
+                                    onclick="mostrarMensaje()">
+
+                                <i class="bi bi-leaf me-2"></i>
+                                Mensaje de concientización
+
+                            </button>
+
+                            <div id="mensajeEco"
+                                 class="alert alert-success mt-3 mb-0 d-none"
+                                 role="status">
+
+                                ¡Cada pequeña acción cuenta!
+                                Cuida el medio ambiente y deja solo tus huellas.
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 5: RECOMENDACIONES -->
+                    <div class="form-bloque">
+
+                        <h3 class="form-bloque-titulo">
+                            <span class="numero">05</span>
+                            Sus recomendaciones
+                        </h3>
+
+                        <label for="Recomendaciones" class="form-label">
+                            ¿Qué nos recomienda para mejorar la atención?
+                        </label>
+
+                        <textarea class="form-control"
+                                  id="Recomendaciones"
+                                  name="Recomendaciones"
+                                  rows="5"
+                                  maxlength="1000"
+                                  placeholder="Escriba aquí sus ideas, sugerencias o comentarios..."></textarea>
+
+                    </div>
+
+                    <!-- BOTONES FINALES -->
+                    <div class="botones-finales d-flex flex-column flex-sm-row
+                                justify-content-center gap-3 mt-4">
+
+                        <button type="reset" class="btn btn-limpiar">
+                            <i class="bi bi-arrow-counterclockwise me-2"></i>
+                            Limpiar formulario
+                        </button>
+
+                        <button type="submit" class="btn btn-enviar">
+                            Enviar formulario
+                            <i class="bi bi-send-fill ms-2"></i>
+                        </button>
+
+                    </div>
+
+                    <p class="text-center text-secondary small mt-4 mb-0">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Sus datos se utilizarán según el propósito de este
+                        formulario.
+                    </p>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+
+        <div class="container">
+
+            <i class="bi bi-mountains footer-icon"></i>
+
+            <h5 class="mt-3 fw-bold">
+                Volcán Cotopaxi
+            </h5>
+
+            <p>
+                Descubre, disfruta y protege la belleza natural del Ecuador.
+            </p>
+
+            <p class="small mt-3">
+                © 2026 Cotopaxi Tour · Turismo responsable
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT DE BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- FUNCIONES DE LA PÁGINA -->
+    <script>
+
+        // Mostrar mensaje de concientización
+        function mostrarMensaje() {
+            document.getElementById("mensajeEco")
+                .classList.remove("d-none");
+        }
+
+        // Evitar seleccionar fechas anteriores a hoy
+        const campoFecha = document.getElementById("fechavisita");
+
+        const hoy = new Date();
+
+        const fechaLocal = new Date(
+            hoy.getTime() - hoy.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        campoFecha.min = fechaLocal;
+
+        // Demostración del envío del formulario
+        document.getElementById("formVisita")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const nombre =
+                    document.getElementById("nombrecliente").value;
+
+                alert(
+                    "¡Gracias, " + nombre + "!\n\n" +
+                    "El formulario se ha validado correctamente.\n" +
+                    "Esta es una demostración: los datos todavía no se han enviado a un servidor."
+                );
+
+            });
+
+        // Ocultar mensaje ecológico al limpiar
+        document.getElementById("formVisita")
+            .addEventListener("reset", function() {
+
+                document.getElementById("mensajeEco")
+                    .classList.add("d-none");
+
+            });
+
+    </script>
+
 </body>
-
 </html>
